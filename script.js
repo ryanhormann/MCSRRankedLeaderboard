@@ -34,6 +34,27 @@ async function getEloLeaderboard() {
             td1.insertAdjacentHTML("beforeend", rank);
             td2.insertAdjacentHTML("beforeend", username);
             td3.insertAdjacentHTML("beforeend", elo);
+
+            // Diamond rank
+            if (elo >= 1800)
+            {
+                td3.style.color = "#b9f2ff";
+            }
+            // Gold rank
+            else if (elo >= 1200)
+            {
+                td3.style.color = "	#FFD700";
+            }
+            // Iron rank
+            else if (elo >= 600)
+            {
+                td3.style.color = "#a19d94";
+            }
+            // Coal rank or unrated
+            else
+            {
+                td3.style.color  = "#36454F";
+            }
             
 
             tr.appendChild(td1);
