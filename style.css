@@ -13,18 +13,30 @@ h1, h2 {
     text-align: center;
 }
 
-ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
+nav {
+    width: 200px;
+    margin: auto;
+    text-align: center;
 }
 
-li {
-    border: 3px solid black;
+button {
     background-color: lightgray;
-    padding: 5px;
-    margin: 5px;
+    border: 3px solid black;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 10px;
     cursor: pointer;
+}
+
+button:hover {
+    text-decoration: underline;
+}
+
+button:active {
+    border: 3px solid gray;
 }
 
 table {
