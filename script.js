@@ -90,7 +90,7 @@ async function getRunsLeaderboard() {
         {
             let rank = data.data[i].final_time_rank;
             let username = data.data[i].user.nickname;
-            let time = msToMinutesAndSeconds(data.data[i].final_time);
+            let time = msToMinutesSecondsMS(data.data[i].final_time);
 
             
             const tr = document.createElement("tr");
@@ -115,8 +115,8 @@ async function getRunsLeaderboard() {
     }
 }
 
-function msToMinutesAndSeconds(ms) {
+function msToMinutesSecondsMS(ms) {
     let minutes = Math.floor(ms / 60000);
-    let seconds = ((ms % 60000) / 1000).toFixed(0);
+    let seconds = ((ms % 60000) / 1000).toFixed(3);
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
