@@ -1,11 +1,16 @@
 const h2 = document.querySelector("h2");
+const tableContainer = document.getElementById("table-container");
 const thead = document.querySelector("thead");
 const tbody = document.querySelector("tbody");
+const searchBar = document.querySelector("input[type='text']");
 
 async function getEloLeaderboard() {
     const response = await fetch("https://mcsrranked.com/api/leaderboard");
     if (response.ok)
     {
+        removeTempTable();
+        clearSearch();
+
         const data = await response.json();
         const userCount = Object.keys(data.data.users).length;
 
@@ -55,7 +60,6 @@ async function getEloLeaderboard() {
             {
                 td3.style.color  = "#36454F";
             }
-            
 
             tr.appendChild(td1);
             tr.appendChild(td2);
@@ -73,6 +77,9 @@ async function getRunsLeaderboard() {
     const response = await fetch("https://mcsrranked.com/api/record-leaderboard");
     if (response.ok)
     {
+        removeTempTable();
+        clearSearch();
+
         const data = await response.json();
         const userCount = Object.keys(data.data).length;
 
@@ -101,7 +108,6 @@ async function getRunsLeaderboard() {
             td1.insertAdjacentHTML("beforeend", rank);
             td2.insertAdjacentHTML("beforeend", username);
             td3.insertAdjacentHTML("beforeend", time);
-            
 
             tr.appendChild(td1);
             tr.appendChild(td2);
@@ -115,8 +121,85 @@ async function getRunsLeaderboard() {
     }
 }
 
+async function getUsernameData() {
+    const username = searchBar.value;
+    const response = await fetch(`https://mcsrranked.com/api/users/${username}`);
+    if (response.ok)
+    {
+        removeTempTable();
+        clearSearch();
+
+        const data = await response.json();
+
+        document.title = `${username}'s Stats - MCSR Ranked Leaderboard`;
+        h2.textContent = `${username}'s Stats`;
+        
+        let rank = data.data.elo_rank;
+        let elo = data.data.elo_rate;
+        let bestTime = msToMinutesSecondsMS(data.data.best_record_time);
+
+        // table 1
+        thead.innerHTML = ` <tr>
+                                <th>Rank</th>
+                                <th>Elo</th>
+                                <th>Best Time</th>
+                            </tr>`;
+
+        tbody.innerHTML = ` <tr>
+                                <td>${rank}</td>
+                                <td>${elo}</td>
+                                <td>${bestTime}</td>
+                            </tr>`;
+
+        // table 2
+
+        let totalWon = data.data.records[2].win;
+        let totalPlayed = totalWon + data.data.records[2].lose + data.data.records[2].draw;
+        let bestWinStreak = data.data.highest_winstreak;
+        let currentWinStreak = data.data.current_winstreak;
+        let winPercent = Math.floor(((totalWon / totalPlayed) * 100));
+        
+
+        const table2 = document.createElement("table");
+        table2.id = "temp-table";
+
+        table2.innerHTML = `<thead>
+                                <tr>
+                                    <th>Best Winstreak</th>
+                                    <th>Current Winstreak</th>
+                                    <th>Win%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>${bestWinStreak}</td>
+                                    <td>${currentWinStreak}</td>
+                                    <td>${winPercent}</td>
+                                </tr>
+                            </tbody>`;
+
+        table2.style.borderTop = "none";
+        tableContainer.appendChild(table2);
+    }
+    else
+    {
+        console.log(response.status, response.statusText);
+    }
+}
+
 function msToMinutesSecondsMS(ms) {
     let minutes = Math.floor(ms / 60000);
     let seconds = ((ms % 60000) / 1000).toFixed(3);
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+
+function removeTempTable() {
+    if(document.getElementById("temp-table"))
+    {
+        document.getElementById("temp-table").remove();
+    }
+}
+
+function clearSearch() {
+    searchBar.value = "";
 }

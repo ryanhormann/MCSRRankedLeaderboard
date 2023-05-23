@@ -9,23 +9,32 @@
 </head>
 <body onload="getEloLeaderboard()">
     <h1>MCSR Ranked Leaderboard</h1>
+
     <nav>
         <button onclick="getEloLeaderboard()">Elo</button>
         <button onclick="getRunsLeaderboard()">Runs</button>
     </nav>
+
+    <div id="searchbar-container">
+        <input type="text" placeholder="Username">
+        <button onclick="getUsernameData()">Search</button>
+    </div>
+
     <h2>Elo Leaderboard</h2>
 
-    <table id="leaderboard">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Elo</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div id="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Elo</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 
     <script src="script.js"></script>
 </body>
