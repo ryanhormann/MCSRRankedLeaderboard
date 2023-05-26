@@ -121,7 +121,7 @@ async function getRunsLeaderboard() {
     }
 }
 
-async function getUsernameData() {
+async function getUsernameStats() {
     const username = searchBar.value;
     const response = await fetch(`https://mcsrranked.com/api/users/${username}`);
     if (response.ok)
@@ -194,7 +194,7 @@ function msToMinutesSecondsMS(ms) {
 }
 
 function removeTempTable() {
-    if(document.getElementById("temp-table"))
+    if (document.getElementById("temp-table"))
     {
         document.getElementById("temp-table").remove();
     }
@@ -203,3 +203,10 @@ function removeTempTable() {
 function clearSearch() {
     searchBar.value = "";
 }
+
+document.addEventListener("keydown", (e) => {
+    if (e.key == "Enter")
+    {
+        getUsernameStats();
+    }
+});
