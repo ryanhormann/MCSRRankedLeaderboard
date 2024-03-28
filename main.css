@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 1.5vw;
+}
+
+body {
+    background-color: lightgray;
+    font-family: monospace;
+}
+
+h1 {
+    font-size: 3vw;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5vw;
+    text-align: center;
+}
+
+nav div {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    list-style-type: none;
+    margin: auto;
+}
+
+li {
+    display: inline;
+}
+
+button {
+    padding: 0.8vw;
+    cursor: pointer;
+    border-width: 1px;
+}
+
+button:hover {
+    text-decoration: underline;
+}
+
+nav div {
+    margin-top: 10px;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding-right: 10em;
+}
+
+th, tr:nth-child(even) {
+    background-color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tbody tr {
+    cursor: pointer;
+}
+
+p {
+    text-align: center;
+}
+
+#stats-container {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.stat {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+    width: 25%;
+}
+
+.stat-header {
+    font-weight: bold;
+}
+
+.netherite {
+    color: mediumorchid;
+}
+
+.diamond {
+    color: skyblue;
+}
+
+.emerald {
+    color: green;
+}
+
+.gold {
+    color: gold;
+}
+
+.iron {
+    color: slategray;
+}
+
+.coal {
+    color: black;
+}
