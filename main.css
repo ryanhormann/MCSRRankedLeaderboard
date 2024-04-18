@@ -118,3 +118,55 @@ p {
 .coal {
     color: black;
 }
+
+@media screen and (max-width: 1300px) {
+    * {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    * {
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    * {
+        font-size: 3.5vw;
+    }
+
+    h1, h2 {
+        font-size: 3.7vw;
+    }
+}
+
+@media screen and (max-width: 666px) {
+    * {
+        font-size: 4vw;
+    }
+
+    h1, h2 {
+        font-size: 4.2vw;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    * {
+        font-size: 5vw;
+    }
+
+    h1, h2 {
+        font-size: 5.2vw;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    * {
+        font-size: 6vw;
+    }
+
+    h1, h2 {
+        font-size: 6.2vw;
+    }
+}
